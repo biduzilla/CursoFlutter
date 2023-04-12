@@ -1,4 +1,4 @@
-import 'package:curso_flutter/task.dart';
+import 'package:curso_flutter/components/task.dart';
 import 'package:flutter/material.dart';
 
 class InitScreen extends StatefulWidget {
@@ -19,29 +19,47 @@ class _InitScreenState extends State<InitScreen> {
         title: Text('Tarefas'),
       ),
       body: AnimatedOpacity(
-        opacity: opacidade ? 1 : 0.5,
+        opacity: opacidade ? 1 : 0,
         duration: Duration(milliseconds: 800),
         child: ListView(
-          children: [
+          children: const [
             Task(
               "Aprender Flutter",
-              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              'assets/images/logo_toddy.jpg',
               1,
             ),
             Task(
               "Aprender Flutter",
-              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              'assets/images/logo_toddy.jpg',
               2,
             ),
             Task(
               "Aprender Flutter",
-              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              'assets/images/logo_toddy.jpg',
               3,
             ),
             Task(
               "Aprender Flutter",
-              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              'assets/images/logo_toddy.jpg',
               4,
+            ),
+            Task(
+              "Aprender Flutter",
+              'assets/images/logo_toddy.jpg',
+              5,
+            ),
+            Task(
+              "Aprender Flutter",
+              'assets/images/logo_toddy.jpg',
+              3,
+            ),
+            Task(
+              "Aprender Flutter",
+              'assets/images/logo_toddy.jpg',
+              2,
+            ),
+            SizedBox(
+              height: 80,
             ),
           ],
         ),
@@ -52,7 +70,7 @@ class _InitScreenState extends State<InitScreen> {
             opacidade = !opacidade;
           });
         },
-        child: Icon(Icons.remove_red_eye),
+        child: const Icon(Icons.remove_red_eye),
       ),
     );
   }
