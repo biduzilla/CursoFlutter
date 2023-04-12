@@ -8,11 +8,15 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController difficultyController = TextEditingController();
+  TextEditingController imageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Nova Tarefa'),
+          title: const Text('Nova Tarefa'),
         ),
         body: Center(
           child: Container(
@@ -24,7 +28,80 @@ class _FormScreenState extends State<FormScreen> {
               border: Border.all(width: 3),
             ),
             child: Column(
-              children: [],
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: nameController,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Nome',
+                      fillColor: Colors.white70,
+                      filled: true,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: difficultyController,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Dificuldade',
+                      fillColor: Colors.white70,
+                      filled: true,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    onChanged: (text) {
+                      setState(() {});
+                    },
+                    controller: imageController,
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Imagem URL',
+                      fillColor: Colors.white70,
+                      filled: true,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 72,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(width: 2, color: Colors.blue),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      imageController.text,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        return Image.asset(
+                          'assets/images/user.jpg',
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      print(nameController.text);
+                    },
+                    child: Text('Adicionar'))
+              ],
             ),
           ),
         ));
