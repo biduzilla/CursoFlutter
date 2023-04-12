@@ -83,20 +83,38 @@ class _TaskState extends State<Task> {
                           onPressed: () {
                             setState(() {
                               nivel++;
-                              print(nivel);
                             });
                           },
                           child: const Icon(Icons.arrow_drop_up))
                     ],
                   ),
                 ),
-                Text(
-                  'Nível $nivel',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: 200,
+                        child: LinearProgressIndicator(
+                          backgroundColor: Colors.white,
+                          color: Colors.purple,
+                          value: nivel / 10,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Nivel $nivel',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
