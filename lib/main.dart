@@ -16,19 +16,19 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
+          leading: Container(),
           title: Text('Tarefas'),
         ),
         body: ListView(
           children: [
-            Task("Aprender Flutter"),
-            Task("Toddy"),
-            Task('Lucky'),
-            Task('Tico'),
-            Task('Tico'),
-            Task('Tico'),
-            Task('Tico'),
-            Task('Tico'),
-            Task('Tico'),
+            Task("Aprender Flutter",
+                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
+            Task("Aprender Flutter",
+                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
+            Task("Aprender Flutter",
+                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
+            Task("Aprender Flutter",
+                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
           ],
         ),
         floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -39,8 +39,9 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatefulWidget {
   final String nome;
+  final String img;
 
-  const Task(this.nome, {Key? key}) : super(key: key);
+  const Task(this.nome, this.img, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
@@ -69,6 +70,10 @@ class _TaskState extends State<Task> {
                         color: Colors.black26,
                         width: 72,
                         height: 100,
+                        child: Image.network(
+                          widget.img,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Container(
                           width: 200,
@@ -79,13 +84,27 @@ class _TaskState extends State<Task> {
                             ),
                             overflow: TextOverflow.ellipsis,
                           )),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              nivel++;
-                            });
-                          },
-                          child: const Icon(Icons.arrow_drop_up))
+                      Container(
+                        height: 52,
+                        width: 52,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                nivel++;
+                              });
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                const Icon(Icons.arrow_drop_up),
+                                Text(
+                                  'Up',
+                                  style: TextStyle(fontSize: 12),
+                                )
+                              ],
+                            )),
+                      )
                     ],
                   ),
                 ),
