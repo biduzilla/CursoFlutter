@@ -21,14 +21,26 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Task("Aprender Flutter",
-                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
-            Task("Aprender Flutter",
-                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
-            Task("Aprender Flutter",
-                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
-            Task("Aprender Flutter",
-                'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053'),
+            Task(
+              "Aprender Flutter",
+              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              1,
+            ),
+            Task(
+              "Aprender Flutter",
+              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              2,
+            ),
+            Task(
+              "Aprender Flutter",
+              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              3,
+            ),
+            Task(
+              "Aprender Flutter",
+              'https://cdn.shopify.com/s/files/1/0252/6632/3507/products/Ha7e1bd5ab6154a1ca1db317a26a8c59de_1200x1200.jpg?v=1651695053',
+              4,
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -40,8 +52,9 @@ class MyApp extends StatelessWidget {
 class Task extends StatefulWidget {
   final String nome;
   final String img;
+  final int diculdade;
 
-  const Task(this.nome, this.img, {Key? key}) : super(key: key);
+  const Task(this.nome, this.img, this.diculdade, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
@@ -75,15 +88,60 @@ class _TaskState extends State<Task> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      Container(
-                          width: 200,
-                          child: Text(
-                            widget.nome,
-                            style: TextStyle(
-                              fontSize: 24,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          )),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              width: 200,
+                              child: Text(
+                                widget.nome,
+                                style: TextStyle(
+                                  fontSize: 24,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              )),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: widget.diculdade >= 1
+                                    ? Colors.blue
+                                    : Colors.blue[100],
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: widget.diculdade >= 2
+                                    ? Colors.blue
+                                    : Colors.blue[100],
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: widget.diculdade >= 3
+                                    ? Colors.blue
+                                    : Colors.blue[100],
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: widget.diculdade >= 4
+                                    ? Colors.blue
+                                    : Colors.blue[100],
+                              ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: widget.diculdade >= 5
+                                    ? Colors.blue
+                                    : Colors.blue[100],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                       Container(
                         height: 52,
                         width: 52,
@@ -118,7 +176,9 @@ class _TaskState extends State<Task> {
                         child: LinearProgressIndicator(
                           backgroundColor: Colors.white,
                           color: Colors.purple,
-                          value: nivel / 10,
+                          value: (widget.diculdade > 0)
+                              ? (nivel / widget.diculdade) / 10
+                              : 1,
                         ),
                       ),
                     ),
